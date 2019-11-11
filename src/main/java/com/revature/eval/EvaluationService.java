@@ -1,5 +1,6 @@
 package com.revature.eval;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -12,11 +13,22 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public String reverse(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
 
+	public String reverse(String string) {
+		String reverseString = new String();
+		if (string==null) {
+			reverseString = null;
+		} else {
+			char [] array = new char [string.length()];
+			for (int i=0; i< string.length(); i++) {
+					array[i]=string.charAt((string.length()-1)-i);
+					String charachter=Character.toString(array[i]);
+					reverseString = reverseString.concat(charachter);
+				}
+		}
+		return reverseString;
+	}
+	
 	
 	/**
 	 * 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
@@ -27,8 +39,27 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		String acronym = new String();
+
+		
+		if (phrase==null) {
+			acronym = null;
+		} else {
+			
+			String [] stringArray = phrase.split("\\s|\\-");
+			char[] charArray = new char [stringArray.length];
+			
+		for (int i=0; i<stringArray.length;i++) {
+			charArray[i]=stringArray[i].charAt(0);
+			String charachter=Character.toString(charArray[i]);
+			acronym=acronym.concat(charachter.toUpperCase());
+		}
+		}
+
+		System.out.print(acronym);
+		return acronym;
+
 	}
 	
 	
