@@ -1,10 +1,16 @@
 package com.revature.eval;
 
+
+
+import java.awt.Window.Type;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EvaluationService {
@@ -152,7 +158,7 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		
-		String[] stringArray = string.split("\\s|\\,");
+		String[] stringArray = string.split("\\s|\\,\\\n|\\,");
 		
 System.out.println(Arrays.toString(stringArray));
 		
@@ -206,11 +212,28 @@ System.out.println(Arrays.toString(stringArray));
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
+	
+
+	
 	static class BinarySearch<T> {
 		private List<T> sortedList;
+		
+			
+		public int indexOf(T t) {	
+			
+		//if (sortedList.getClass()==Type.class.(String))	{
+		List <Integer> sortedListInt = sortedList.stream().map(s -> Integer.parseInt((String) s)).collect(Collectors.toList());
+		int ti=Integer.parseInt((String) t);
+		Integer tic = new Integer(ti);
+	//	}
 
-		public int indexOf(T t) {
-			int arrayLength=sortedList.size();
+		System.out.println("1 " + sortedList.getClass());
+		System.out.println("2 "+ sortedListInt);
+		
+			int arrayLength=sortedListInt.size();
+
+			System.out.println("3 " + arrayLength);
+			
 			int indexLow=0;
 			int index;
 			int indexHigh=arrayLength;
@@ -218,24 +241,35 @@ System.out.println(Arrays.toString(stringArray));
 			
 		do {
 			index = (indexLow+indexHigh)/2;
-			int i = (int) sortedList.get(index);
+			System.out.println("4 " + index);
+			int i = (int) sortedListInt.get(index);
 			Integer k = new Integer(i);
+			System.out.println("7 " + k);
+		
+
+			System.out.println("8 " + t);
+			System.out.println("9 " + (1+ti));
+			System.out.println("10 " + (1+tic));
 			
-		  if  (t.hashCode()== k.hashCode()) {
-				result = (int) sortedList.get(index);
-			  } else if (t.hashCode() < k.hashCode()) {
+			
+			System.out.println("5 " + tic.hashCode());
+			System.out.println("6 " + k.hashCode());
+			
+		  if  (tic.hashCode()== k.hashCode()) {
+				result = (int) sortedListInt.get(index);
+			  } else if (tic.hashCode() < k.hashCode()) {
 			    indexHigh = index-1;
-				System.out.println(t.hashCode());
+				System.out.println("11 " + tic.hashCode());
 		  } else {
 			  indexLow= index+1;
-				System.out.println(t.hashCode());
+				System.out.println(tic.hashCode());
 		  }
-			} while(t.hashCode()!= result);
+			} while(tic.hashCode()!= result);
 			
-			System.out.println(index);
-			System.out.println(result);
+
 			
 			return index;
+		
 		}
 
 		public BinarySearch(List<T> sortedList) {

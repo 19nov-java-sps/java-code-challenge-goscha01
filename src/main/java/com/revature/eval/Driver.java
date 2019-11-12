@@ -24,11 +24,12 @@ public class Driver {
 		
 		//testMethod.wordCount(testString);
 		
-		List<Integer> sortedListOfOddLength = Collections
-				.unmodifiableList(Arrays.asList(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634));
 		
-		BinarySearch testMethod2 = new BinarySearch(sortedListOfOddLength);
-		testMethod2.indexOf(21);
+				List<String> sortedList = Collections.unmodifiableList(Arrays.asList("1", "3", "4", "6", "8", "9", "11"));
+
+		
+		BinarySearch testMethod2 = new BinarySearch(sortedList);
+		testMethod2.indexOf("3");
 	
 	}
 
