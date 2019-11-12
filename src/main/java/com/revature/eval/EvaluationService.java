@@ -1,8 +1,11 @@
 package com.revature.eval;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class EvaluationService {
 
@@ -41,7 +44,6 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 		
 		String acronym = new String();
-
 		
 		if (phrase==null) {
 			acronym = null;
@@ -57,7 +59,6 @@ public class EvaluationService {
 		}
 		}
 
-		System.out.print(acronym);
 		return acronym;
 
 	}
@@ -79,8 +80,64 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		List<Character> string1 = Arrays.asList('A','E','I','O','U','L','N','R','S','T');
+		List<Character> string2 = Arrays.asList('D','G');
+		List<Character> string3 = Arrays.asList('B','C','M','P');
+		List<Character> string4 = Arrays.asList('F','H','V','W','Y');
+		List<Character> string5 = Arrays.asList('K');
+		List<Character> string8 = Arrays.asList('J','X');
+		List<Character> string10 = Arrays.asList('Q','Z');
+		
+				
+		HashMap<Character,Integer> myHashMap1 = new HashMap<>();
+			for (Character number: string1) {
+				myHashMap1.put(number,1);
+			}
+		HashMap<Character,Integer> myHashMap2 = new HashMap<>();	
+			for (Character number: string2) {
+				myHashMap2.put(number,2);
+			}
+		HashMap<Character,Integer> myHashMap3 = new HashMap<>();
+			for (Character number: string3) {
+				myHashMap3.put(number,3);
+			}
+		HashMap<Character,Integer> myHashMap4 = new HashMap<>();	
+			for (Character number: string4) {
+				myHashMap4.put(number,4);
+			}
+		HashMap<Character,Integer> myHashMap5 = new HashMap<>();
+			for (Character number: string5) {
+				myHashMap5.put(number,5);
+			}
+		HashMap<Character,Integer> myHashMap8 = new HashMap<>();	
+			for (Character number: string8) {
+				myHashMap8.put(number,8);
+			}
+		HashMap<Character,Integer> myHashMap10 = new HashMap<>();	
+			for (Character number: string10) {
+				myHashMap10.put(number,10);
+			}		
+				
+			HashMap<Character,Integer> myHashMap = new HashMap<>();
+			myHashMap.putAll(myHashMap1);
+			myHashMap.putAll(myHashMap2);
+			myHashMap.putAll(myHashMap3);
+			myHashMap.putAll(myHashMap4);
+			myHashMap.putAll(myHashMap5);
+			myHashMap.putAll(myHashMap8);
+			myHashMap.putAll(myHashMap10);
+
+	
+			int [] numberArray = new int [string.length()];
+			
+			for (int i=0; i<string.length();i++) {
+				char c = string.toUpperCase().charAt(i);
+				numberArray[i]=myHashMap.get(c);
+			}
+
+			int result=Arrays.stream(numberArray).sum();
+		
+		return result;
 	}
 	
 	
@@ -94,8 +151,24 @@ public class EvaluationService {
 	 * @return 
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		String[] stringArray = string.split("\\s|\\,");
+		
+System.out.println(Arrays.toString(stringArray));
+		
+		HashMap<String,Integer> myHashMap = new HashMap<>();
+
+		for (int i=0; i<stringArray.length; i++) {
+			Integer count = myHashMap.get(stringArray[i]);
+			if (count==null) {
+				myHashMap.put(stringArray[i],1);
+			}else {
+				myHashMap.put(stringArray[i],++count);
+			}
+
+		}
+
+		return myHashMap;
 	}
 	
 	/**
@@ -137,7 +210,24 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			int index = sortedList.size()/2;
+			int i = (int) sortedList.get(index);
+			Integer k = new Integer(i);
+			
+			do {
+		
+				if (t.hashCode()== k.hashCode()) {
+				return  i;
+		}else if (t.hashCode() < k.hashCode()) {
+			 index = index/2;
+		}else {
+			index=index+(sortedList.size()-index)/2;
+		}
+			 }while(t.hashCode()!= k.hashCode());
+			
+			System.out.println(index);
+			System.out.println(i);
+			
 			return 0;
 		}
 
