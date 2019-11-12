@@ -28,7 +28,7 @@ public class Driver {
 				.unmodifiableList(Arrays.asList(1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634));
 		
 		BinarySearch testMethod2 = new BinarySearch(sortedListOfOddLength);
-		testMethod2.indexOf(55);
+		testMethod2.indexOf(21);
 	
 	}
 

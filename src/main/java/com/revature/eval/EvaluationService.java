@@ -210,25 +210,31 @@ System.out.println(Arrays.toString(stringArray));
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			int index = sortedList.size()/2;
+			int arrayLength=sortedList.size();
+		//	int index = sortedList.size()/2;
+			int result = 0;
+
+
+			
+		do {
+			int index=0;
 			int i = (int) sortedList.get(index);
 			Integer k = new Integer(i);
+		  if  (t.hashCode()== k.hashCode()) {
+				result= (int) sortedList.get(index);
+		  }else if (t.hashCode() < k.hashCode()) {
+			    index = index/2;
+				System.out.println(t.hashCode());
+		  }else {
+			  index=(index+arrayLength)/2;
+				System.out.println(t.hashCode());
+		  }
+			}while(t.hashCode()!= result);
 			
-			do {
-		
-				if (t.hashCode()== k.hashCode()) {
-				return  i;
-		}else if (t.hashCode() < k.hashCode()) {
-			 index = index/2;
-		}else {
-			index=index+(sortedList.size()-index)/2;
-		}
-			 }while(t.hashCode()!= k.hashCode());
+			//System.out.println(index);
+			System.out.println(result);
 			
-			System.out.println(index);
-			System.out.println(i);
-			
-			return 0;
+			return result;
 		}
 
 		public BinarySearch(List<T> sortedList) {
