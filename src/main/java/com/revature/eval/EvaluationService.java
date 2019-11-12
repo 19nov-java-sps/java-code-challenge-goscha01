@@ -211,30 +211,31 @@ System.out.println(Arrays.toString(stringArray));
 
 		public int indexOf(T t) {
 			int arrayLength=sortedList.size();
-		//	int index = sortedList.size()/2;
+			int indexLow=0;
+			int index;
+			int indexHigh=arrayLength;
 			int result = 0;
-
-
 			
 		do {
-			int index=0;
+			index = (indexLow+indexHigh)/2;
 			int i = (int) sortedList.get(index);
 			Integer k = new Integer(i);
+			
 		  if  (t.hashCode()== k.hashCode()) {
-				result= (int) sortedList.get(index);
-		  }else if (t.hashCode() < k.hashCode()) {
-			    index = index/2;
+				result = (int) sortedList.get(index);
+			  } else if (t.hashCode() < k.hashCode()) {
+			    indexHigh = index-1;
 				System.out.println(t.hashCode());
-		  }else {
-			  index=(index+arrayLength)/2;
+		  } else {
+			  indexLow= index+1;
 				System.out.println(t.hashCode());
 		  }
-			}while(t.hashCode()!= result);
+			} while(t.hashCode()!= result);
 			
-			//System.out.println(index);
+			System.out.println(index);
 			System.out.println(result);
 			
-			return result;
+			return index;
 		}
 
 		public BinarySearch(List<T> sortedList) {
