@@ -221,11 +221,20 @@ System.out.println(Arrays.toString(stringArray));
 			
 		public int indexOf(T t) {	
 			
-		//if (sortedList.getClass()==Type.class.(String))	{
-		List <Integer> sortedListInt = sortedList.stream().map(s -> Integer.parseInt((String) s)).collect(Collectors.toList());
+			List <Integer> sortedListInt;
+			Integer tic;
+			
+		if (t instanceof String)	{
+		System.out.println("0 - String!!!" + sortedList.getClass());
+		
+		sortedListInt = sortedList.stream().map(s -> Integer.parseInt((String) s)).collect(Collectors.toList());
 		int ti=Integer.parseInt((String) t);
-		Integer tic = new Integer(ti);
-	//	}
+		tic = new Integer(ti);
+		}else {
+			sortedListInt = (List<Integer>) sortedList;
+			 tic = new Integer((int) t);
+			
+		}
 
 		System.out.println("1 " + sortedList.getClass());
 		System.out.println("2 "+ sortedListInt);
@@ -246,15 +255,7 @@ System.out.println(Arrays.toString(stringArray));
 			Integer k = new Integer(i);
 			System.out.println("7 " + k);
 		
-
-			System.out.println("8 " + t);
-			System.out.println("9 " + (1+ti));
-			System.out.println("10 " + (1+tic));
-			
-			
-			System.out.println("5 " + tic.hashCode());
-			System.out.println("6 " + k.hashCode());
-			
+		
 		  if  (tic.hashCode()== k.hashCode()) {
 				result = (int) sortedListInt.get(index);
 			  } else if (tic.hashCode() < k.hashCode()) {
